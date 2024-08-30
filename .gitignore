@@ -6,3 +6,6 @@ dist
 build
 coverage
 package-lock.json
+.env
+.env.development
+.env.production
