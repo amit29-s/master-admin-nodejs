@@ -1,0 +1,8 @@
+node_modules
+logs
+.scannerwork
+dist
+.tmp
+build
+coverage
+package-lock.json
