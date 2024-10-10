@@ -5,6 +5,7 @@ const configs = {
   dbname: env.mongodb.name,
   host: env.mongodb.host,
   port: env.mongodb.port,
+  dBname: env.mongodb.dbName,
 };
 
 import mongoose from 'mongoose';
@@ -12,7 +13,7 @@ export default () => {
   const mongoconnect = () => {
     mongoose
       .connect(
-        `mongodb+srv://${configs.username}:${configs.password}@${configs.host}/?retryWrites=true&w=majority&appName=${configs.dbname}`,
+        `mongodb+srv://${configs.username}:${configs.password}@${configs.host}/${configs.dBname}?retryWrites=true&w=majority&appName=${configs.dbname}`,
       )
       .then(() => {
         return console.info(

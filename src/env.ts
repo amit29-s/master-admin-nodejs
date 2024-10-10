@@ -65,5 +65,6 @@ export const env = {
     host: getOsEnvOptional('MONGO_DB_HOST'),
     port: toNumber(getOsEnvOptional('MONGO_DB_PORT')),
     name: getOsEnvOptional('MONGO_DB_NAME'),
+    dbName: getOsEnvOptional('MONGO_DB_DATABASE'),
   },
 };
