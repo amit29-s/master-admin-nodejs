@@ -1,18 +1,13 @@
 import Joi from 'joi';
-import { ICreateUser } from '../../types/user/user.type';
+import { iCreateUser } from '../../types/user.type';
 
-export const createUserDataValidation = (data: ICreateUser) => {
+export const createUserDataValidation = (data: iCreateUser) => {
   const createUserSchema = Joi.object({
-    first_name: Joi.string()
-      .trim()
-      .label('First name')
-      .exist()
-      .min(3)
-      .messages({
-        'any.required': 'First name is required.',
-        'string.min': 'First name must be at least 3 characters long.',
-      }),
-    last_name: Joi.string().trim().label('Last name').exist().min(3).messages({
+    firstName: Joi.string().trim().label('First name').exist().min(3).messages({
+      'any.required': 'First name is required.',
+      'string.min': 'First name must be at least 3 characters long.',
+    }),
+    lastName: Joi.string().trim().label('Last name').exist().min(3).messages({
       'any.required': 'Last name is required.',
       'string.min': 'Last name must be at least 3 characters long.',
     }),
@@ -24,7 +19,7 @@ export const createUserDataValidation = (data: ICreateUser) => {
       'any.required': 'Phone number is required.',
       'string.length': 'Inavlid phone number.',
     }),
-    user_type: Joi.string().label('User type').allow('').optional(),
+    userType: Joi.string().label('User type').allow('').optional(),
   });
   return createUserSchema.validate(data);
 };

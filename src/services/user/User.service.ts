@@ -1,31 +1,33 @@
 import { Service } from 'typedi';
 import { ResponseHandler } from '../response-handler/ResponseHandler.service';
-import { ICreateUser } from '../../types/user/user.type';
+import { iCreateUser, iUserRefId } from '../../types/user.type';
 import { STATUS_CODES } from '../../utils/constant';
-import User from '../../models/user';
+import User from '../../models/user.model';
 import { createUserDataValidation } from '../../utils/validators/user.validations';
 
 @Service()
 export class UserService extends ResponseHandler {
-  async createCustomer(userData: ICreateUser) {
+  ////////////////////////////////////////////
+  ////////////////////////////////////////////
+  ///////// CREATE
+  ////////////////////////////////////////////
+  ////////////////////////////////////////////
+  async createUser(userInputs: iCreateUser) {
     try {
-      const { error } = createUserDataValidation(userData);
-      if (error)
-        return this.catchErrorHandler(
-          error?.details?.[0]?.message,
-          STATUS_CODES.BAD_REQUEST,
-        );
+      const { error } = createUserDataValidation(userInputs);
+      if (error) throw new Error(error?.details?.[0]?.message);
+
+      //
       const isUserAlreadyCreated = await User.findOne({
-        email: userData?.email,
+        email: userInputs?.email,
       });
-      if (isUserAlreadyCreated?._id)
-        return this.catchErrorHandler(
-          'User already exits',
-          STATUS_CODES.BAD_REQUEST,
-        );
-      const user = new User(userData);
+      if (isUserAlreadyCreated?._id) throw new Error('User already exits');
+
+      //
+      const user = new User(userInputs);
       const savedUser = await user.save();
 
+      //
       return this.responseHandler(
         savedUser,
         'User created successfully',
@@ -35,4 +37,58 @@ export class UserService extends ResponseHandler {
       return this.catchErrorHandler(error?.message, STATUS_CODES.BAD_REQUEST);
     }
   }
+
+  ////////////////////////////////////////////
+  ////////////////////////////////////////////
+  ///////// READ
+  ////////////////////////////////////////////
+  ////////////////////////////////////////////
+  async fetchUser(userId: iUserRefId) {
+    try {
+      //
+      return this.responseHandler(
+        {},
+        'User created successfully',
+        STATUS_CODES.OK,
+      );
+    } catch (error: any) {
+      return this.catchErrorHandler(error?.message, STATUS_CODES.BAD_REQUEST);
+    }
+  }
+  async fetchUsers(by: 'VENDOR' | 'CORE', ids: iUserRefId[]) {
+    try {
+      //
+      return this.responseHandler(
+        {},
+        'User created successfully',
+        STATUS_CODES.OK,
+      );
+    } catch (error: any) {
+      return this.catchErrorHandler(error?.message, STATUS_CODES.BAD_REQUEST);
+    }
+  }
+
+  ////////////////////////////////////////////
+  ////////////////////////////////////////////
+  ///////// UPDATE
+  ////////////////////////////////////////////
+  ////////////////////////////////////////////
+  async updateUser(userInputs: iCreateUser) {
+    try {
+      //
+      return this.responseHandler(
+        {},
+        'User created successfully',
+        STATUS_CODES.OK,
+      );
+    } catch (error: any) {
+      return this.catchErrorHandler(error?.message, STATUS_CODES.BAD_REQUEST);
+    }
+  }
+
+  ////////////////////////////////////////////
+  ////////////////////////////////////////////
+  ///////// DELETE
+  ////////////////////////////////////////////
+  ////////////////////////////////////////////
 }
