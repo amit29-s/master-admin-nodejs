@@ -1,7 +1,7 @@
 import mongoose, { Schema } from 'mongoose';
 
 // Sub-feature schema for handling different types of discounts
-const SubFeatureSchema = new Schema({
+const VendorSubFeatureSchema = new Schema({
   name: {
     type: String,
     required: true,
@@ -21,7 +21,7 @@ const SubFeatureSchema = new Schema({
 });
 
 // Main feature schema
-const FeatureSchema = new Schema({
+const VendorFeatureSchema = new Schema({
   featureName: {
     type: String,
     required: true,
@@ -47,7 +47,7 @@ const FeatureSchema = new Schema({
     type: Number, // Version number for tracking feature updates
     default: 1,
   },
-  subFeatures: [SubFeatureSchema], // Array of sub-features (percentage, flat discount, etc.)
+  subFeatures: [VendorSubFeatureSchema], // Array of sub-features (percentage, flat discount, etc.)
   // route: {
   //   type: String,
   //   unique: true, // Ensures each feature has a unique route
@@ -88,5 +88,5 @@ const FeatureSchema = new Schema({
   },
 });
 
-const Feature = mongoose.model('Feature', FeatureSchema);
+const Feature = mongoose.model('VendorFeature', VendorFeatureSchema);
 export default Feature;

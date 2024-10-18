@@ -6,13 +6,14 @@ export type iOrgRefId = Schema.Types.ObjectId;
 
 export interface iOrganization {
   _id: iOrgRefId;
-  name: string;
-  status: 'active' | 'inactive' | 'on hold' | 'suspended';
+  image: string;
+  storeName: string;
+  status: 'active' | 'inactive';
   features: iFeatureRefId[];
   members: iUserRefId[];
   createdBy: iUserRefId;
   addresses: iOrganizationAddress[];
-  industry: string;
+  storeType: string;
   contactInfo: {
     phoneNumbers: string[];
     emails: string[];

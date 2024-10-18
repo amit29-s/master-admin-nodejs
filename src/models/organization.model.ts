@@ -27,13 +27,17 @@ const AddressSchema = new Schema<iOrganizationAddress>({
 
 const OrganizationSchema = new Schema<iOrganization>(
   {
-    name: {
+    image : {
+      type : String,
+      required : true,
+    },
+    storeName: {
       type: String,
       required: true,
     },
     status: {
       type: String,
-      enum: ['active', 'inactive', 'on hold', 'suspended'],
+      enum: ['active', 'inactive'],
       default: 'active',
     },
     addresses: {
@@ -45,7 +49,7 @@ const OrganizationSchema = new Schema<iOrganization>(
         ref: 'Feature', // Links to the employees under this organization
       }], // Features available to the organization (enabled by Core Organisation for vendors)
     },
-    industry: {
+    storeType: {
       type: String, // Optional field to specify the industry (e.g., e-commerce, retail)
     },
     contactInfo: {

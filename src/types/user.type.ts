@@ -24,3 +24,5 @@ export interface iUser {
 }
 
 export interface iCreateUser extends Omit<iUser, '_id'> {}
+
+export interface ISingInUser extends Pick<iUser, 'email' | 'password'> {}

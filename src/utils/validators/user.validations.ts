@@ -19,6 +19,18 @@ export const createUserDataValidation = (data: iCreateUser) => {
       'any.required': 'Phone number is required.',
       'string.length': 'Inavlid phone number.',
     }),
+    password: Joi.string()
+      .label('Password')
+      .required()
+      .min(8)
+      .max(30)
+      .pattern(new RegExp('^[a-zA-Z0-9!@#$%^&*()_+\\-=\\[\\]{};":\\\\|,.<>\\/?]+$'))
+      .messages({
+        'any.required': 'Password is required.',
+        'string.min': 'Password must be at least 8 characters long.',
+        'string.max': 'Password must be at most 30 characters long.',
+        'string.pattern.base': 'Password can only contain letters, numbers, and special characters.',
+      }),
     userType: Joi.string().label('User type').allow('').optional(),
   });
   return createUserSchema.validate(data);

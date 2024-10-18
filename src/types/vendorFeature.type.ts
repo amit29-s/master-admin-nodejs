@@ -1,28 +1,29 @@
 import { Schema } from 'mongoose';
 
-export type iFeatureRefId = Schema.Types.ObjectId;
+export type iVendorFeatureRefId = Schema.Types.ObjectId;
 
-export interface iFeature {
-  _id: iFeatureRefId;
+export interface iVendorFeature {
+  _id: iVendorFeatureRefId;
   featureName: string;
   keywordsForSearch: string[];
   description: string;
   enabled: boolean;
   stage: string;
   version: number;
-  subFeatures: iSubFeature[];
+  subFeatures: iVendorSubFeature[];
   route: string;
   owner: string[];
   showInList: boolean;
 }
 
-export interface iSubFeature {
+export interface iVendorSubFeature {
   name: string;
   enabled: boolean;
   description: string;
   config: iConfig;
 }
 
+
 export type iConfig = Record<string, string>;
 
-export interface iCreateFeature extends Omit<iFeature, '_id'> {}
+export interface iVendorCreateFeature extends Omit<iVendorFeature, '_id'> {}

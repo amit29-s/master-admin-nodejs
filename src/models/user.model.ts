@@ -1,6 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
-import { USER_ROLES } from 'src/enums/user.enums';
-import { iCreateUser } from 'src/types/user.type';
+import { USER_ROLES } from '../enums/user.enums';
+import { iCreateUser } from '../types/user.type';
 
 const UserSchema = new Schema<iCreateUser>(
   {
