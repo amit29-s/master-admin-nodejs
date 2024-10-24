@@ -14,6 +14,10 @@ const SubFeatureSchema = new Schema({
     type: Boolean,
     default: false, // Control whether this specific sub-feature is active
   },
+  enabledForClient: {
+    type: Boolean,
+    default: false,
+  },
   config: {
     type: Map, // Dynamic configuration for each sub-feature (e.g., max discount, limits, etc.)
     of: Schema.Types.Mixed, // Mixed to allow flexibility for different types of values
@@ -37,6 +41,10 @@ const FeatureSchema = new Schema({
   enabled: {
     type: Boolean,
     default: false, // General toggle for the feature as a whole
+  },
+  enabledForClient: {
+    type: Boolean,
+    default: false,
   },
   stage: {
     type: String,

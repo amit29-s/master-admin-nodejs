@@ -8,6 +8,7 @@ export interface iOrganization {
   _id: iOrgRefId;
   image: string;
   storeName: string;
+  base_url: string;
   status: 'active' | 'inactive';
   features: iFeatureRefId[];
   members: iUserRefId[];

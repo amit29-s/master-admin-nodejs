@@ -16,6 +16,7 @@ export default () => {
         `mongodb+srv://${configs.username}:${configs.password}@${configs.host}/${configs.dBname}?retryWrites=true&w=majority&appName=${configs.dbname}`,
       )
       .then(() => {
+        console.log(`mongodb+srv://${configs.username}:${configs.password}@${configs.host}/${configs.dBname}?retryWrites=true&w=majority&appName=${configs.dbname}`)
         return console.info(
           `Successfully connected to DB Server - uri: ${configs.host}`,
         );

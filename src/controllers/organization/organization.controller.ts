@@ -31,6 +31,13 @@ import { iCreatOrg } from 'src/types/organization.type';
         return this.responseService.apiResponseHandler(res, data);
     }
 
+    @Post('/getOrganizationByNameOrBaseUrl')
+    async getOrganizationByNameOrBaseUrl(@Body() orgData : any,@Res() res: Response) {
+      const {orgName,base_url} = orgData;
+      const data = await this.OrganizationService.getOrganizationByNameOrBaseUrl(orgName,base_url);
+      return this.responseService.apiResponseHandler(res, data);
+  }
+
     @Delete('/deleteOrganization/:id')
     async deleteStore(@Param('id') id: string, @Res() res: Response) {
       console.log(id,'lkjasdflkjsadfkljsadflksjadflksdjfkl')

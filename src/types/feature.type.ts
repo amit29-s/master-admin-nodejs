@@ -8,6 +8,7 @@ export interface iFeature {
   keywordsForSearch: string[];
   description: string;
   enabled: boolean;
+  enabledForClient: boolean;
   stage: string;
   version: number;
   subFeatures: iSubFeature[];
@@ -17,8 +18,10 @@ export interface iFeature {
 }
 
 export interface iSubFeature {
+  _id: iFeatureRefId;
   name: string;
   enabled: boolean;
+  enabledForClient: boolean;
   description: string;
   config: iConfig;
 }

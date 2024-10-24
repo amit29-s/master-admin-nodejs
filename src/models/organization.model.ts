@@ -35,6 +35,10 @@ const OrganizationSchema = new Schema<iOrganization>(
       type: String,
       required: true,
     },
+    base_url: {
+      type: String,
+      required: true,
+    },
     status: {
       type: String,
       enum: ['active', 'inactive'],

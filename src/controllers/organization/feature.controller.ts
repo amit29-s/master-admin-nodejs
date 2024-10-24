@@ -25,9 +25,21 @@ export class FeatureController {
     return this.responseService.apiResponseHandler(res, data);
   }
 
+  @Post('/createManyFeature/:clientId')
+    async createManyVendorFeature(@Param('clientId') clientId: string, @Body() features: iCreateFeature[], @Res() res: Response) {
+        const data = await this.FeatureService.insertFeaturesInClientDataBase(features,clientId);
+      return this.responseService.apiResponseHandler(res, data);
+    }
+
   @Get('/getAllFeatures')
   async getAllFeatures(@Res() res: Response) {
     const data = await this.FeatureService.getAllFeatures();
+    return this.responseService.apiResponseHandler(res, data);
+  }
+
+  @Get('/getAllFeatures/:clientId')
+  async getAllFeaturesByClientId(@Param('clientId') clientId: string, @Res() res: Response) {
+    const data = await this.FeatureService.getMergedFeatures(clientId);
     return this.responseService.apiResponseHandler(res, data);
   }
 

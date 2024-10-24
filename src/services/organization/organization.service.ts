@@ -50,6 +50,42 @@ export class OrganizationService extends ResponseHandler {
     }
   }
 
+  async getOrganizationByNameOrBaseUrl(name?: string, base_url?: string) {
+    try {
+      const query: any = {};
+  
+      // Build query based on provided parameters
+      if (name) query.storeName = name;
+      if (base_url) query.base_url = base_url;
+  
+      // Fetch the organization matching the query
+      const organization = await Organization.findOne(query).lean();
+      
+      return this.responseHandler(
+        organization,
+        'Organization fetched successfully',
+        STATUS_CODES.OK,
+      );
+    } catch (error: any) {
+      return this.catchErrorHandler(error?.message, STATUS_CODES.BAD_REQUEST);
+    }
+  }
+  
+
+  async getOrganizationInfo(_id : string) {
+    try {
+      const organization = await Organization.findOne({_id});
+      
+      return this.responseHandler(
+        organization,
+        'Organization created successfully',
+        STATUS_CODES.OK,
+      );
+    } catch (error: any) {
+      return this.catchErrorHandler(error?.message, STATUS_CODES.BAD_REQUEST);
+    }
+  }
+
   async deleteOrganizationById(id: string) {
     try {
       const deletedOrganization = await Organization.findByIdAndDelete(id);
